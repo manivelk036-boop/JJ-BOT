@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
 import { vectorStore } from './rag/vectorStore.js';
 import { analyzeIntent } from './rag/intent.js';
 import { executeHybridSearch } from './rag/hybridSearch.js';
@@ -88,6 +90,16 @@ app.post('/api/chat', async (req, res) => {
     });
   }
 });
+
+// Serve frontend build in production
+const distPath = path.join(process.cwd(), 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`🚀 JJCET AI Assistant Backend running at http://localhost:${PORT}`);

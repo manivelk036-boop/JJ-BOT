@@ -299,20 +299,30 @@ export default function App() {
       {/* LEFT SIDEBAR */}
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <div className="sidebar-brand">
-            <div className="brand-badge">JJ</div>
-            <div className="brand-text">
-              <span className="brand-title">JJCET AI</span>
-              <span className="brand-subtitle">Trichy • Anna Univ</span>
-            </div>
+          <div className="sidebar-header-top">
+            <span className="sidebar-college-label">Official College Portal</span>
+            <button
+              className="mobile-close-btn"
+              onClick={() => setIsSidebarOpen(false)}
+              aria-label="Close sidebar"
+            >
+              <X size={20} />
+            </button>
           </div>
-          <button
-            className="mobile-close-btn"
-            onClick={() => setIsSidebarOpen(false)}
-            aria-label="Close sidebar"
-          >
-            <X size={20} />
-          </button>
+          <div className="sidebar-logo-card">
+            <img
+              src="/jjcet-logo.png"
+              alt="J.J. College of Engineering and Technology"
+              className="sidebar-logo-img"
+            />
+          </div>
+          <div className="sidebar-brand-subbar">
+            <div className="sidebar-brand-badge">
+              <Sparkles size={12} className="sparkle-icon" />
+              <span>AI Assistant</span>
+            </div>
+            <span className="sidebar-brand-code">TNEA: 3806</span>
+          </div>
         </div>
 
         <div className="sidebar-action">
@@ -370,6 +380,7 @@ export default function App() {
               <Menu size={20} />
             </button>
             <div className="header-title-group">
+              <img src="/jjcet-emblem.png" alt="JJCET Emblem" className="header-emblem-mini" />
               <div className="header-app-name">
                 <Sparkles size={18} className="sparkle-icon" />
                 <span>JJCET AI</span>
